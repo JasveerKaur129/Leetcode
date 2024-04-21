@@ -1,0 +1,22 @@
+class Solution {
+    public List<String> letterCasePermutation(String s) {
+        return helper(s, 0,new ArrayList<>(),"");
+    }
+
+    public List<String> helper(String s, int i,List<String>  list,String ans){
+
+        if(i==s.length()){
+            list.add(ans);
+            return list;
+        }
+
+        char ch = s.charAt(i);
+        if(Character.isLetter(ch)){
+            helper(s,i+1,list,ans+Character.toLowerCase(ch));
+            helper(s,i+1,list,ans+Character.toUpperCase(ch));
+        }else{
+            helper(s,i+1,list,ans+ch);
+        }
+        return list;
+    }
+}
