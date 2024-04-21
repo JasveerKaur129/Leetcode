@@ -20,3 +20,30 @@ class Solution {
         return list;
     }
 }
+// BackTracking solution
+
+class Solution {
+    public List<String> letterCasePermutation(String s) {
+        return helper(s, 0,new ArrayList<>(),new StringBuilder());
+    }
+
+    public List<String> helper(String s, int i,List<String>  list,StringBuilder ans){
+
+        if(i==s.length()){
+            list.add(ans.toString());
+            return list;
+        }
+
+        char ch = s.charAt(i);
+        if(Character.isLetter(ch)){
+            helper(s,i+1,list,ans.append(Character.toLowerCase(ch)));
+            ans.deleteCharAt(i);
+            helper(s,i+1,list,ans.append(Character.toUpperCase(ch)));
+            ans.deleteCharAt(i);
+        }else{
+            helper(s,i+1,list,ans.append(ch));
+            ans.deleteCharAt(i);
+        }
+        return list;
+    }
+}
